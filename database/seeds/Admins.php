@@ -1,0 +1,29 @@
+<?php
+
+namespace Iankov\ControlPanel\Database\Seeds;
+
+use Illuminate\Database\Seeder;
+use DB;
+
+class Admins extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $data = [
+            'name' => 'Admin',
+            'email' => 'admin@admin.com',
+            'password' => bcrypt('admin'),
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s')
+        ];
+
+        if(DB::table('admins')->where('email', $data['email'])->count() == 0) {
+            DB::table('admins')->insert($data);
+        }
+    }
+}
