@@ -43,6 +43,11 @@ class LoginController extends Controller
         return view('icp::auth.login');
     }
 
+    protected function credentials(Request $request)
+    {
+        return array_merge($request->only($this->username(), 'password'), ['active' => 1]);
+    }
+
     public function logout(Request $request)
     {
         $this->guard()->logout();

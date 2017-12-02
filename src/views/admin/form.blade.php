@@ -30,6 +30,13 @@
                     @endif
                 </div>
             </div>
+
+            <div class="form-group">
+                <label class="col-sm-2 control-label">Active</label>
+                <div class="col-sm-10 checkbox">
+                    <input name="active" type="checkbox" {{old('active', $user->active) ? 'checked' : ''}} />
+                </div>
+            </div>
         </div>
         <div class="col-md-6"></div>
     </div>
@@ -38,3 +45,9 @@
     <button type="button" class="btn btn-default" onclick="document.location.href='{{icp_route('admins')}}'">Cancel</button>
     <button type="submit" class="btn btn-success">Save</button>
 </div>
+
+<script type="text/javascript">
+    $(document).ready(function() {
+        Icp.iCheck('input[name=active]');
+    });
+</script>

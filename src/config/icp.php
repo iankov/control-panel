@@ -33,6 +33,7 @@ return [
             'route' => [
                 'path' => base_path('vendor/iankov/control-panel/src/routes/admins.php'),
             ],
+            'password-min-length' => 5,
         ],
         'settings' => [
             'route' => [
