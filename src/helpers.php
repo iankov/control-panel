@@ -42,3 +42,21 @@ if (! function_exists('setting')) {
         return $result ? $result->parsed_value : '';
     }
 }
+
+/**
+ * Assoc array to html attributes
+ *
+ * @param array
+ * @return string
+ */
+if(! function_exists('html_attributes')){
+    function html_attributes($assoc)
+    {
+        $attributes = [];
+        foreach($assoc as $k => $v){
+            $attributes[] = $k.'="'.e($v).'"';
+        }
+
+        return implode(' ', $attributes);
+    }
+}

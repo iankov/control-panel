@@ -1,7 +1,7 @@
 <div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
     <label class="col-sm-2 control-label">{{$label}}</label>
     <div class="col-sm-10">
-        <select name="{{$name}}" class="form-control">
+        <select {!! html_attributes($attr ?? []) !!} name="{{$name}}" class="form-control">
 
             @if(isset($prepend))
                 @foreach($prepend as $key => $item)
@@ -18,7 +18,7 @@
                     $item = $item['name'];
                 }
                 ?>
-                <option value="{{$key}}" {{$key == $value ? 'selected="1"' : ''}} >{{$item}}</option>
+                <option value="{{$key}}" {!! $key == $value ? 'selected="1"' : '' !!} >{{$item}}</option>
             @endforeach
 
         </select>

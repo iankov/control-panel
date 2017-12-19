@@ -13,12 +13,18 @@ class Setting extends Model
 
     const TYPE_TEXT = 0;
     const TYPE_JSON = 1;
+    const TYPE_INT = 2;
+    const TYPE_FLOAT = 3;
+    const TYPE_BOOL = 4;
 
     public static function getTypes()
     {
         return [
-            Setting::TYPE_TEXT => 'Text',
-            Setting::TYPE_JSON => 'Json'
+            self::TYPE_TEXT => 'TEXT',
+            self::TYPE_JSON => 'JSON',
+            self::TYPE_INT => 'INT',
+            self::TYPE_FLOAT => 'FLOAT',
+            self::TYPE_BOOL => 'BOOL',
         ];
     }
 
@@ -32,6 +38,18 @@ class Setting extends Model
         switch($this->type){
             case self::TYPE_JSON:
                 $result = json_decode($this->value);
+                break;
+
+            case self::TYPE_INT:
+                $result = intval($this->value);
+                break;
+
+            case self::TYPE_FLOAT:
+                $result = floatval($this->value);
+                break;
+
+            case self::TYPE_BOOL:
+                $result = boolval($this->value);
                 break;
 
             case self::TYPE_TEXT:
