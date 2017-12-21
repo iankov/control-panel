@@ -13,10 +13,8 @@
             <div class="form-group">
                 <label class="col-sm-2 control-label">Active</label>
                 <div class="col-sm-10">
-                    <div class="checkbox icheck">
-                        <label>
-                            <input name="active" type="checkbox" {{old('active', $page->active) ? 'checked' : ''}} />
-                        </label>
+                    <div class="checkbox">
+                        <input name="active" type="checkbox" {{old('active', $page->active) ? 'checked' : ''}} />
                     </div>
                 </div>
             </div>
@@ -32,3 +30,9 @@
     <a href="{{icp_route('static')}}" class="btn btn-default">Cancel</a>
     <button type="submit" class="btn btn-success">Save</button>
 </div>
+
+<script type="text/javascript">
+    $(function(){
+        Icp.iCheck('input[name=active]');
+    });
+</script>

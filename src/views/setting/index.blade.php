@@ -9,7 +9,7 @@
     <div class="box">
         <div class="box-header">
             <button type="button" onclick="document.location.href='{{icp_route('setting.create')}}'" class="btn btn-default">Add new</button>
-            <!--<button type="submit" class="btn btn-danger" disabled>Delete</button>-->
+            <button id="delete-button" type="submit" class="btn btn-danger pull-right" disabled>Delete</button>
         </div>
 
         <div class="box-body">
@@ -25,24 +25,11 @@
                     <th>Type</th>
                     <th>Key</th>
                     <th class="no-sort">Value</th>
-                    <th>Created</th>
+                    <th>Updated</th>
                     <th style="width: 120px;" class="text-center">Actions</th>
                 </tr>
                 </thead>
                 <tbody></tbody>
-                <tfoot>
-                <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Active</th>
-                    <th>Name</th>
-                    <th>Type</th>
-                    <th>Key</th>
-                    <th>Value</th>
-                    <th>Created</th>
-                    <th>Actions</th>
-                </tr>
-                </tfoot>
             </table>
         </div>
         <!-- /.box-body -->
@@ -90,34 +77,37 @@
                 pageLength: 25,
                 searching: true,
                 ordering: true,
+                processing: true,
+                serverSide: true,
                 ajax: {
                     url: "{{icp_route('settings.json')}}",
                     complete: function(response){
+                        dt.initComplete();
                         if(response.responseJSON && response.responseJSON.csrf_token) {
                             Icp.token(response.responseJSON.csrf_token);
                         }
                     }
                 },
                 columns: [
-                    {data: "checkbox", name: "checkbox", orderable: false },
-                    {data: "id", name: "id", orderable: true },
-                    {data: "active", name: "active", orderable: true, className: 'text-center' },
+                    {data: "checkbox", name: "checkbox", orderable: false, searchable: false },
+                    {data: "id", name: "id", orderable: true, searchable: false },
+                    {data: "active", name: "active", orderable: true, searchable: false, className: 'text-center' },
                     {data: "name", name: "name", orderable: true },
-                    {data: "type", name: "type", orderable: true },
+                    {data: "type", name: "type", orderable: true, searchable: false },
                     {data: "key", name: "key", orderable: true },
-                    {data: "value", name: "value", orderable: false },
-                    {data: "updated_at", name: "updated_at", orderable: true },
-                    {data: "actions", name: "actions", orderable: false, className: 'text-center' },
+                    {data: "value", name: "value", orderable: false, searchable: false },
+                    {data: "updated_at", name: "updated_at", orderable: true, searchable: false },
+                    {data: "actions", name: "actions", orderable: false, searchable: false, className: 'text-center' },
                 ],
                 order: [[ 1, "desc" ]],
-                initComplete: dt.initComplete
+                //initComplete: dt.initComplete
             });
 
             $('#delete-button').click(function(){
                 if(confirm('Are you sure to DELETE this item?')) {
                     dt.postReload(
                         '{{icp_route('setting.delete')}}',
-                        $(checkboxSlavesSel).serialize() + '&_method=DELETE&_token={{csrf_token()}}',
+                        $(checkboxSlavesSel).serialize() + '&_method=DELETE&_token='+Icp.token(),
                         dt.initComplete
                     )
                 }

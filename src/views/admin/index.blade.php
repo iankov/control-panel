@@ -43,17 +43,6 @@
                 </tr>
                 </thead>
                 <tbody></tbody>
-                <tfoot>
-                <tr>
-                    <th></th>
-                    <th>ID</th>
-                    <th>Active</th>
-                    <th>Name</th>
-                    <th>Email</th>
-                    <th>Last modification</th>
-                    <th class="text-center">Actions</th>
-                </tr>
-                </tfoot>
             </table>
         </div>
     </div>
@@ -93,32 +82,35 @@
                 pageLength: 25,
                 searching: true,
                 ordering: true,
+                processing: true,
+                serverSide: true,
                 ajax: {
                     url: "{{icp_route('admins.json')}}",
                     complete: function(response){
+                        dt.initComplete();
                         if(response.responseJSON && response.responseJSON.csrf_token) {
                             Icp.token(response.responseJSON.csrf_token);
                         }
                     }
                 },
                 columns: [
-                    {data: "checkbox", name: "checkbox", orderable: false },
-                    {data: "id", name: "id", orderable: true },
-                    {data: "active", name: "active", orderable: true, className: 'text-center' },
+                    {data: "checkbox", name: "checkbox", orderable: false, searchable: false },
+                    {data: "id", name: "id", orderable: true, searchable: false },
+                    {data: "active", name: "active", orderable: true, searchable: false, className: 'text-center' },
                     {data: "name", name: "name", orderable: true },
                     {data: "email", name: "email", orderable: true },
-                    {data: "updated_at", name: "updated_at", orderable: true },
-                    {data: "actions", name: "actions", orderable: false, className: 'text-center' },
+                    {data: "updated_at", name: "updated_at", orderable: true, searchable: false },
+                    {data: "actions", name: "actions", orderable: false, searchable: false, className: 'text-center' },
                 ],
                 order: [[ 1, "desc" ]],
-                initComplete: dt.initComplete
+                //initComplete: dt.initComplete
             });
 
             $('#delete-button').click(function(){
                 if(confirm('Are you sure to DELETE this item?')) {
                     dt.postReload(
                         '{{icp_route('admin.delete')}}',
-                        $(checkboxSlavesSel).serialize() + '&_method=DELETE&_token={{csrf_token()}}',
+                        $(checkboxSlavesSel).serialize() + '&_method=DELETE&_token='+Icp.token(),
                         dt.initComplete
                     )
                 }

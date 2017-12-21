@@ -5,14 +5,38 @@ namespace Iankov\ControlPanel\Controllers\Control;
 use Iankov\ControlPanel\Controllers\Controller;
 use Iankov\ControlPanel\Models\StaticPage;
 use Illuminate\Http\Request;
+use Yajra\DataTables\Facades\DataTables;
 
 class StaticPageController extends Controller
 {
     public function index()
     {
-        return view('icp::static.index', [
-            'pages' => StaticPage::all()
-        ]);
+        return view('icp::static.index');
+    }
+
+    public function jsonIndex()
+    {
+        return Datatables::of(StaticPage::select('id', 'active', 'name', 'route', 'updated_at'))
+            ->editColumn('updated_at', function($item){
+                return $item->updated_at->format('d M Y, H:i:s');
+            })
+            ->editColumn('active', function ($item) {
+                return view('icp::forms.active', [
+                    'active' => $item->active,
+                    'action' => icp_route('static.active.toggle', $item->id),
+                ]);
+            })
+            ->addColumn('actions', function($item){
+                return
+                    view('icp::forms.buttons.edit', ['action' => icp_route('static.edit', $item->id)]).'&nbsp;'.
+                    view('icp::forms.buttons.delete', ['action' => icp_route('static.delete', $item->id)]);
+            })
+            ->addColumn('checkbox', function($item){
+                return '<input type="checkbox" name="ids[]" value="'.$item->id.'">';
+            })
+            ->rawColumns(['active', 'actions', 'checkbox'])
+            ->with(['csrf_token' => csrf_token()])
+            ->make(true);
     }
 
     public function edit($id)
@@ -55,18 +79,22 @@ class StaticPageController extends Controller
 
     public function toggleActive($id)
     {
-        $page = StaticPage::find($id);
-        if($page){
-            $page->active = $page->active ? 0 : 1;
-            $page->save();
+        $static = StaticPage::find($id);
+        if($static){
+            $static->active = $static->active ? 0 : 1;
+            $static->save();
         }
 
-        return redirect()->back();
+        return response()->json();
     }
 
-    public function delete($id){
-        StaticPage::find($id)->delete();
+    public function delete($id = null)
+    {
+        $ids = request()->input('ids');
+        $ids = is_array($ids) ? $ids : [$id];
 
-        return redirect(icp_route('static'));
+        StaticPage::whereIn('id', $ids)->delete();
+
+        return response()->json();
     }
 }
