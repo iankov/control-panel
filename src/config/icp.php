@@ -40,11 +40,6 @@ return [
                 'path' => base_path('vendor/iankov/control-panel/src/routes/settings.php'),
             ],
         ],
-        'static' => [
-            'route' => [
-                'path' => base_path('vendor/iankov/control-panel/src/routes/static.php'),
-            ],
-        ]
     ],
 
     'menu' => [
@@ -57,11 +52,6 @@ return [
             'icon' => 'wrench',
             'title' => 'Settings',
             'icp_route' => 'settings'
-        ],
-        [
-            'icon' => 'file',
-            'title' => 'Static',
-            'icp_route' => 'static'
         ],
     ],
 ];

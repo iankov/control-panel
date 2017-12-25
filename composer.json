@@ -2,7 +2,6 @@
     "name": "iankov/control-panel",
     "description": "Admin panel for laravel",
     "require": {
-        "guzzlehttp/psr7": "^1.4",
         "yajra/laravel-datatables-oracle": "^8.3"
     },
     "extra": {
