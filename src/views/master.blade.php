@@ -19,6 +19,7 @@
 
     <link rel="stylesheet" href="{{ asset('icp/css/style.css') }}">
     <script src="{{asset('icp/js/app.js?v1')}}"></script>
+    <script src="{{ asset('icp/js/datatablejs.js?v10') }}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->

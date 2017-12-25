@@ -1,7 +1,12 @@
+@php
+    $attr = $attr ?? [];
+    $attr['class'] = $attr['class'] ?? 'form-control';
+    unset($attr['name']);
+@endphp
 <div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
     <label class="col-sm-2 control-label">{{$label}}</label>
     <div class="col-sm-10">
-        <select {!! html_attributes($attr ?? []) !!} name="{{$name}}" class="form-control">
+        <select {!! html_attributes($attr ?? []) !!} name="{{$name}}">
 
             @if(isset($prepend))
                 @foreach($prepend as $key => $item)

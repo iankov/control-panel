@@ -31,7 +31,7 @@
             <table id="table-list" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                    <th>
+                    <th class="checkbox-header">
                         <input type="checkbox" id="check-all">
                     </th>
                     <th style="width: 100px;">ID</th>
@@ -50,7 +50,7 @@
     <!-- DataTables -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('icp/js/datatablejs.js?v10') }}"></script>
+    <script src="{{ asset_v('icp/js/datatablejs.js') }}"></script>
 
     <script type="text/javascript">
         var dt = new DataTableJs('#table-list');
@@ -94,7 +94,7 @@
                     }
                 },
                 columns: [
-                    {data: "checkbox", name: "checkbox", orderable: false, searchable: false },
+                    {data: "checkbox", name: "checkbox", orderable: false, searchable: false, className: 'text-center' },
                     {data: "id", name: "id", orderable: true, searchable: false },
                     {data: "active", name: "active", orderable: true, searchable: false, className: 'text-center' },
                     {data: "name", name: "name", orderable: true },

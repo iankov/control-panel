@@ -62,7 +62,7 @@ class StaticPageController extends Controller
     {
         $this->validate($request, [
             'name' => 'required',
-            'route' => 'unique:static_pages,route,'.$id
+            'route' => 'required|unique:static_pages,route,'.$id
         ]);
 
         $all = $request->all();

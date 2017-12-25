@@ -36,7 +36,7 @@
     <!-- DataTables -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/jquery.dataTables.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/datatables/1.10.16/js/dataTables.bootstrap.min.js"></script>
-    <script src="{{ asset('icp/js/datatablejs.js?v10') }}"></script>
+    <script src="{{ asset_v('icp/js/datatablejs.js') }}"></script>
 
     <script type="text/javascript">
         var dt = new DataTableJs('#table-list');

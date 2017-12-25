@@ -30,14 +30,7 @@
                 'attr' => ['data-name' => 'value', 'data-type' => 'select']
             ])
 
-            <div class="form-group">
-                <label class="col-sm-2 control-label">Active</label>
-                <div class="col-sm-10">
-                    <div class="checkbox">
-                        <input name="active" type="checkbox" {{old('active', $setting->active) ? 'checked' : ''}} />
-                    </div>
-                </div>
-            </div>
+            @include('icp::forms.horizontal.checkbox-group', ['name' => 'active', 'value' => old('active', $setting->active), 'label' => 'Active'])
         </div>
 
         <div class="col-md-6">
