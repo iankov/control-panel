@@ -4,9 +4,9 @@ namespace Iankov\ControlPanel;
 
 use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
-use Illuminate\Support\ServiceProvider;
+use Illuminate\Support\ServiceProvider as BaseProvider;
 
-class ServiceProvider extends ServiceProvider
+class ServiceProvider extends BaseProvider
 {
     /**
      * Bootstrap the application services.

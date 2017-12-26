@@ -17,9 +17,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/iCheck/1.0.2/skins/square/blue.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/admin-lte/2.4.2/css/skins/_all-skins.min.css" />
 
-    <link rel="stylesheet" href="{{ asset('icp/css/style.css') }}">
-    <script src="{{asset('icp/js/app.js?v1')}}"></script>
-    <script src="{{ asset('icp/js/datatablejs.js?v10') }}"></script>
+    <link rel="stylesheet" href="{{ asset_v('icp/css/style.css') }}">
+    <script src="{{ asset_v('icp/js/app.js')}}"></script>
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -109,7 +108,7 @@
 
         <div class="content-wrapper" style="position: relative;">
             <div id="icp-loader">
-                <img src="{{asset('icp/img/loader.svg')}}">
+                <img src="{{asset_v('icp/img/loader.svg')}}">
             </div>
         </div>
 
