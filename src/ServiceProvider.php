@@ -6,7 +6,7 @@ use Illuminate\Routing\Router;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\ServiceProvider;
 
-class ControlPanelProvider extends ServiceProvider
+class ServiceProvider extends ServiceProvider
 {
     /**
      * Bootstrap the application services.
@@ -22,10 +22,14 @@ class ControlPanelProvider extends ServiceProvider
         ], 'icp_config');
 
         $this->publishes([
+            __DIR__.'/../public' => public_path('icp'),
+        ], 'icp_public');
+
+        /*$this->publishes([
             __DIR__.'/views' => base_path('resources/views/vendor/iankov/control-panel'),
         ], 'icp_views');
 
-        /*$this->publishes([
+        $this->publishes([
             __DIR__.'/../database/migrations/' => database_path('migrations')
         ], 'icp_migrations');
 
@@ -53,6 +57,8 @@ class ControlPanelProvider extends ServiceProvider
      */
     public function register()
     {
+        $this->mergeConfigFrom(__DIR__ . '/config/icp.php', 'icp');
+
         include __DIR__.'/helpers.php';
 
         $defaultRoute = config('icp.route');

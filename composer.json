@@ -2,12 +2,13 @@
     "name": "iankov/control-panel",
     "description": "Admin panel for laravel",
     "require": {
+        "iankov/asset-v": "^1.0",
         "yajra/laravel-datatables-oracle": "^8.3"
     },
     "extra": {
         "laravel": {
             "providers": [
-                "Iankov\\ControlPanel\\ControlPanelProvider"
+                "Iankov\\ControlPanel\\ServiceProvider"
             ]
         }
     },
