@@ -22,7 +22,7 @@ class ServiceProvider extends BaseProvider
         ], 'icp_config');
 
         $this->publishes([
-            __DIR__.'/../public' => public_path('icp'),
+            __DIR__.'/../public' => public_path(),
         ], 'icp_public');
 
         /*$this->publishes([

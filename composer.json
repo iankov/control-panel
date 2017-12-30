@@ -3,7 +3,8 @@
     "description": "Admin panel for laravel",
     "require": {
         "iankov/asset-v": "^1.0",
-        "yajra/laravel-datatables-oracle": "^8.3"
+        "yajra/laravel-datatables-oracle": "^8.3",
+        "barryvdh/laravel-elfinder": "^0.3.11"
     },
     "extra": {
         "laravel": {

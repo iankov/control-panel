@@ -1,0 +1,190 @@
+/* contextmenu.css */
+/* **Note** that the context menu is NOT inside the main elfinder div */
+/* Context menu wrapper */
+.elfinder-contextmenu,
+.elfinder-contextmenu-sub,
+.elfinder-button-menu {
+  font-size: 16px;
+  font-family: 'Open Sans', sans-serif;
+  background: #fff!important;
+  border: 1px solid #b5b5b5!important;
+  box-shadow: 0 0 5px #cdcdcd!important;
+  border-radius: 0;
+  padding: 3px 3px 0 3px;
+}
+
+/* Menu item */
+.elfinder-contextmenu .elfinder-contextmenu-item,
+.elfinder-button-menu .elfinder-button-menu-item {
+  margin: 0 0 3px 0;
+  padding: 4px 30px;
+}
+
+/* Hovered menu item */
+.elfinder-contextmenu .elfinder-contextmenu-item:hover,
+.elfinder-button-menu .elfinder-button-menu-item:hover  {
+  background: #dedddc;
+  color: #000;
+}
+
+/* Item icon */
+.elfinder-contextmenu .elfinder-contextmenu-item .elfinder-contextmenu-icon {
+  /* */
+}
+
+/* Separator */
+.elfinder-contextmenu .elfinder-contextmenu-separator {
+  background: #e2e3e4;
+  height: 1px;
+  margin: 1px;
+}
+
+.elfinder-contextmenu .elfinder-button-icon-open + span {
+  font-weight: bold;
+}
+
+.elfinder-contextmenu .elfinder-button-icon{
+  zoom: 1;
+}
+
+/* Back */
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-back {
+  background-image: url('../images/16px/back.png');
+}
+
+/* Forward */
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-forward {
+  background-image: url('../images/16px/forward.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-reload {
+  background-image: url('../images/16px/reload.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-netmount {
+  background-image: url('../images/16px/netmount.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-home {
+  background-image: url('../images/16px/home.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-up {
+  background-image: url('../images/16px/up.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-mkdir {
+  background-image: url('../images/16px/directory.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-mkfile {
+  background-image: url('../images/16px/file.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-upload {
+  background-image: url('../images/16px/upload.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-open {
+  background-image: url('../images/16px/open.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-download {
+  background-image: url('../images/16px/download.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-getfile {
+  background-image: url('../images/16px/getfile.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-info {
+  background-image: url('../images/16px/info.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-quicklook {
+  background-image: url('../images/16px/preview.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-copy {
+  background-image: url('../images/16px/copy.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-cut {
+  background-image: url('../images/16px/cut.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-paste {
+  background-image: url('../images/16px/paste.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-view {
+  background-image: url('../images/16px/view.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-view-list {
+  background-image: url('../images/16px/view-list.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-help {
+  background-image: url('../images/16px/help.png');
+}
+
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-duplicate {
+  background-image: url('../images/16px/duplicate.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-rm {
+  background-image: url('../images/16px/rm.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-edit {
+  background-image: url('../images/16px/edit.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-rename {
+  background-image: url('../images/16px/rename.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-archive {
+  background-image: url('../images/16px/archive.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-resize {
+  background-image: url('../images/16px/resize.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-extract {
+  background-image: url('../images/16px/extract.png');
+}
+
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-sort {
+  background-image: url('../images/16px/sort.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-undo {
+  background-image: url('../images/16px/undo.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-redo {
+  background-image: url('../images/16px/redo.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-selectall {
+  background-image: url('../images/16px/select_all.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-selectnone {
+  background-image: url('../images/16px/deselect_all.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-selectinvert {
+  background-image: url('../images/16px/invert_selection.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-empty {
+  background-image: url('../images/16px/clear_folder.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-fullscreen {
+  background-image: url('../images/16px/fullscreen.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-unfullscreen {
+  background-image: url('../images/16px/unfullscreen.png');
+}
+.elfinder .elfinder-contextmenu-item .elfinder-button-icon-preference {
+  background-image: url('../images/16px/preference.png');
+}

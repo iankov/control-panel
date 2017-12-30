@@ -40,6 +40,11 @@ return [
                 'path' => base_path('vendor/iankov/control-panel/src/routes/settings.php'),
             ],
         ],
+        'file-manager' => [
+            'route' => [
+                'path' => base_path('vendor/iankov/control-panel/src/routes/file-manager.php'),
+            ],
+        ],
     ],
 
     'menu' => [
@@ -52,6 +57,11 @@ return [
             'icon' => 'wrench',
             'title' => 'Settings',
             'icp_route' => 'settings'
+        ],
+        [
+            'icon' => 'folder',
+            'title' => 'File Manager',
+            'icp_route' => 'file-manager'
         ],
     ],
 ];
