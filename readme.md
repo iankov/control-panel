@@ -73,3 +73,29 @@ php artisan elfinder:publish
 ```   
 php artisan vendor:publish --provider='Barryvdh\Elfinder\ElfinderServiceProvider' --tag=config
 ```
+
+Change elfinder config
+```
+    'route' => [
+        'prefix' => 'control/elfinder',
+        'middleware' => 'icp', //Set to null to disable middleware filter
+    ],
+    
+    //required for default ckeditor integration: images/files browse/upload
+    'roots' => [
+        'images' => [
+            'alias' => '/images',
+            'driver' => 'LocalFileSystem', // driver for accessing file system (REQUIRED)
+            'path' => public_path('images'), // path to files (REQUIRED)
+            'URL' => '/images', // URL to files (REQUIRED)
+            'uploadOrder' => ['allow', 'deny'],
+            'uploadAllow' => ['image'], # allow any images
+        ],
+        'root' => [
+            'alias' => '/',
+            'driver' => 'LocalFileSystem', // driver for accessing file system (REQUIRED)
+            'path' => public_path(''), // path to files (REQUIRED)
+            'URL' => '/', // URL to files (REQUIRED)
+        ]
+    ],
+```

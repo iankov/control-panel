@@ -34,7 +34,7 @@
                 customData: {
                     _token: '{{ csrf_token() }}'
                 },
-                url : '{{ route("elfinder.connector") }}',  // connector URL
+                url : '{{ $connector_url }}',  // connector URL
                 soundPath: '{{ asset('packages/barryvdh/elfinder/sounds') }}'
             });
         });
