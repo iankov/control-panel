@@ -48,21 +48,8 @@ class ServiceProvider extends BaseProvider
 
             \Iankov\ControlPanel\Middlewares\AdminAuth::class,
         ]);
-    }
-
-    /**
-     * Register the application services.
-     *
-     * @return void
-     */
-    public function register()
-    {
-        $this->mergeConfigFrom(__DIR__ . '/config/icp.php', 'icp');
-
-        include __DIR__.'/helpers.php';
 
         $defaultRoute = config('icp.route');
-
         foreach(config('icp.modules') as $module){
             $route = array_get($module, 'route');
             if(!is_array($route) || !isset($route['path'])){
@@ -79,7 +66,20 @@ class ServiceProvider extends BaseProvider
                 ->namespace($namespace)
                 ->group($route['path']);
         }
+    }
 
-        //$this->app->make('Iankov\ControlPanel\Controllers\AdminController');
+    /**
+     * Register the application services.
+     *
+     * @return void
+     */
+    public function register()
+    {
+        $config = require __DIR__ . '/config/icp.php';
+        $icp = $this->app['config']->get('icp', []);
+        $this->app['config']->set('icp', array_replace_recursive($config, $icp));
+        //$this->mergeConfigFrom(__DIR__ . '/config/icp.php', 'icp');
+
+        include __DIR__.'/helpers.php';
     }
 }

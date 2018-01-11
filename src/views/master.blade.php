@@ -80,14 +80,26 @@
 
     <aside class="main-sidebar">
         <section class="sidebar">
-            <ul class="sidebar-menu">
+            <ul class="sidebar-menu" data-widget="tree" data-accordion="0" data-animation-speed="200">
                 <li class="header">Menu</li>
-                @foreach(config('icp.menu') as $menu)
-                    <li>
-                        <a href="{{isset($menu['icp_route']) ? icp_route($menu['icp_route']) : array_get($menu, 'link', '#')}}">
-                            <i class="fa fa-{{array_get($menu, 'icon', '')}}"></i>
-                            <span>{{array_get($menu, 'title', 'no-title')}}</span>
+                @foreach(collect(config('icp.menu.groups'))->sortBy('title') as $key => $group)
+                    <li class="treeview menu-open">
+                        <a href="#">
+                            <i class="fa fa-{{array_get($group, 'icon', '')}}"></i> <span>{{array_get($group, 'title', '')}}</span>
+                            <span class="pull-right-container">
+                                <i class="fa fa-angle-left pull-right"></i>
+                            </span>
                         </a>
+                        <ul class="treeview-menu" style="display: block;">
+                            @foreach(collect($group['items'])->sortBy('title') as $menu)
+                                <li>
+                                    <a href="{{isset($menu['icp_route']) ? icp_route($menu['icp_route']) : array_get($menu, 'link', '#')}}">
+                                        <i class="fa fa-{{array_get($menu, 'icon', '')}}"></i>
+                                        <span>{{array_get($menu, 'title', 'no-title')}}</span>
+                                    </a>
+                                </li>
+                            @endforeach
+                        </ul>
                     </li>
                 @endforeach
             </ul>

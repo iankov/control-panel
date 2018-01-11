@@ -48,20 +48,36 @@ return [
     ],
 
     'menu' => [
-        [
-            'icon' => 'user-circle',
-            'title' => 'Admins',
-            'icp_route' => 'admins'
-        ],
-        [
-            'icon' => 'wrench',
-            'title' => 'Settings',
-            'icp_route' => 'settings'
-        ],
-        [
-            'icon' => 'folder',
-            'title' => 'File Manager',
-            'icp_route' => 'file-manager'
-        ],
+        'groups' => [
+            'basic' => [
+                'title' => 'Basic',
+                'icon' => 'bars',
+                'items' => [
+                    'admins' => [
+                        'icon' => 'user-circle',
+                        'title' => 'Admins',
+                        'icp_route' => 'admins'
+                    ],
+                    'settings' => [
+                        'icon' => 'gear',
+                        'title' => 'Settings',
+                        'icp_route' => 'settings'
+                    ],
+                    'file-manager' => [
+                        'icon' => 'folder',
+                        'title' => 'File Manager',
+                        'icp_route' => 'file-manager'
+                    ],
+                ]
+            ],
+
+            'other' => [
+                'title' => 'Other',
+                'icon' => 'folder',
+                'items' => [
+
+                ]
+            ],
+        ]
     ],
 ];
