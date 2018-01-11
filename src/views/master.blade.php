@@ -83,6 +83,9 @@
             <ul class="sidebar-menu" data-widget="tree" data-accordion="0" data-animation-speed="200">
                 <li class="header">Menu</li>
                 @foreach(collect(config('icp.menu.groups'))->sortBy('title') as $key => $group)
+                    @if(empty($group['items']))
+                        @continue
+                    @endif
                     <li class="treeview menu-open">
                         <a href="#">
                             <i class="fa fa-{{array_get($group, 'icon', '')}}"></i> <span>{{array_get($group, 'title', '')}}</span>
