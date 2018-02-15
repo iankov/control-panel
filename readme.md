@@ -70,6 +70,11 @@
     ```bash
     php artisan elfinder:publish
     ```
+ * Copy `vendor/iankov/control-panel/public/packages/barryvdh` to `public/barryvdh`.
+    You can do this by publishing iankov/control-panel assets
+    ```bash
+    php artisan vendor:publish --tag=icp_public
+    ```
 
  * Publish the config file
 

@@ -50,21 +50,25 @@ class ServiceProvider extends BaseProvider
         ]);
 
         $defaultRoute = config('icp.route');
-        foreach(config('icp.modules') as $module){
-            $route = array_get($module, 'route');
-            if(!is_array($route) || !isset($route['path'])){
-                continue;
-            }
-            $prefix = array_get($route, 'prefix-url', $defaultRoute['prefix-url']);
-            $name = array_get($route, 'prefix-name', $defaultRoute['prefix-name']);
-            $middleware = array_get($route, 'middleware', $defaultRoute['middleware']);
-            $namespace = array_get($route, 'namespace', $defaultRoute['namespace']);
+        foreach(config('icp.modules') as $module)
+        {
+            if(array_get($module, 'active', config('icp.default-module-activity')))
+            {
+                $route = array_get($module, 'route');
+                if (!is_array($route) || !isset($route['path'])) {
+                    continue;
+                }
+                $prefix = array_get($route, 'prefix-url', $defaultRoute['prefix-url']);
+                $name = array_get($route, 'prefix-name', $defaultRoute['prefix-name']);
+                $middleware = array_get($route, 'middleware', $defaultRoute['middleware']);
+                $namespace = array_get($route, 'namespace', $defaultRoute['namespace']);
 
-            Route::prefix($prefix)
-                ->name($name)
-                ->middleware($middleware)
-                ->namespace($namespace)
-                ->group($route['path']);
+                Route::prefix($prefix)
+                    ->name($name)
+                    ->middleware($middleware)
+                    ->namespace($namespace)
+                    ->group($route['path']);
+            }
         }
     }
 
@@ -77,7 +81,12 @@ class ServiceProvider extends BaseProvider
     {
         $config = require __DIR__ . '/config/icp.php';
         $icp = $this->app['config']->get('icp', []);
-        $this->app['config']->set('icp', array_replace_recursive($config, $icp));
+        $mergedConfig = array_replace_recursive($config, $icp);
+
+        //do not merge menu, use menu from main config file
+        $menu = array_get($icp, 'menu', []);
+        $mergedConfig['menu'] = $menu;
+        $this->app['config']->set('icp', $mergedConfig);
         //$this->mergeConfigFrom(__DIR__ . '/config/icp.php', 'icp');
 
         include __DIR__.'/helpers.php';

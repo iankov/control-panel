@@ -82,8 +82,8 @@
         <section class="sidebar">
             <ul class="sidebar-menu" data-widget="tree" data-accordion="0" data-animation-speed="200">
                 <li class="header">Menu</li>
-                @foreach(collect(config('icp.menu.groups'))->sortBy('title') as $key => $group)
-                    @if(empty($group['items']))
+                @foreach(collect(config('icp.menu.groups')) as $key => $group)
+                    @if(empty($group['items']) || !array_get($group, 'visible', config('icp.default-menu-group-visibility')))
                         @continue
                     @endif
                     <li class="treeview menu-open">
@@ -94,7 +94,10 @@
                             </span>
                         </a>
                         <ul class="treeview-menu" style="display: block;">
-                            @foreach(collect($group['items'])->sortBy('title') as $menu)
+                            @foreach(collect($group['items']) as $menu)
+                                @if(!array_get($menu, 'visible', config('icp.default-menu-item-visibility')))
+                                    @continue
+                                @endif
                                 <li>
                                     <a href="{{isset($menu['icp_route']) ? icp_route($menu['icp_route']) : array_get($menu, 'link', '#')}}">
                                         <i class="fa fa-{{array_get($menu, 'icon', '')}}"></i>
