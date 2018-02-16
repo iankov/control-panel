@@ -70,6 +70,11 @@ class ServiceProvider extends BaseProvider
                     ->group($route['path']);
             }
         }
+
+        $fromIcpServiceProvider = 1;
+        $packageMenu = require __DIR__ . '/config/icp-menu.php';
+        $customMenu = include config_path('icp-menu.php');
+        $this->app['config']->set('icp-menu', array_merge($packageMenu, $customMenu));
     }
 
     /**
@@ -81,13 +86,7 @@ class ServiceProvider extends BaseProvider
     {
         $config = require __DIR__ . '/config/icp.php';
         $icp = $this->app['config']->get('icp', []);
-        $mergedConfig = array_replace_recursive($config, $icp);
-
-        //do not merge menu, use menu from main config file
-        $menu = array_get($icp, 'menu', []);
-        $mergedConfig['menu'] = $menu;
-        $this->app['config']->set('icp', $mergedConfig);
-        //$this->mergeConfigFrom(__DIR__ . '/config/icp.php', 'icp');
+        $this->app['config']->set('icp', array_replace_recursive($config, $icp));
 
         include __DIR__.'/helpers.php';
     }
