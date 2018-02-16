@@ -72,13 +72,14 @@ class ServiceProvider extends BaseProvider
         }
 
         $fromIcpServiceProvider = 1;
-        $packageMenu = require __DIR__ . '/config/icp-menu.php';
-        $customMenu = [];
-        $customMenuPath = config_path('icp-menu.php');
-        if(file_exists($customMenuPath)) {
-            $customMenu = require config_path('icp-menu.php');
+        $menuConfig = [];
+        $configPath = config_path('icp-menu.php');
+        if(file_exists($configPath)) {
+            $menuConfig = require $configPath;
+        }else{
+            $menuConfig = require __DIR__ . '/config/icp-menu.php';
         }
-        $this->app['config']->set('icp-menu', array_merge($packageMenu, $customMenu));
+        $this->app['config']->set('icp-menu', $menuConfig);
     }
 
     /**
