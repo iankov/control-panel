@@ -5,8 +5,8 @@
     unset($attr['name']);
 @endphp
 <div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
-    <label class="col-sm-2 control-label">{{$label}}</label>
-    <div class="col-sm-10">
+    <label class="{{$col1_class or 'col-sm-2'}} control-label">{{$label}}</label>
+    <div class="{{$col2_class or 'col-sm-10'}}">
         <div class="checkbox">
             <input name="{{$name}}" {!! html_attributes($attr ?? []) !!} {{$value ? 'checked' : ''}} />
             @if($errors->has($name))
