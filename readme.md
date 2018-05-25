@@ -117,3 +117,57 @@
     ```
 
  * Create 'images' folder in your public dir to match `roots.images` config path
+
+## Horizontal form groups
+
+* Create horizontal group elements like this
+```html
+<div class="form-group ">
+    <label class="col-sm-2 control-label">Name</label>
+    <div class="col-sm-10">
+        <input name="name" value="" placeholder="John Mitchel" type="text" class="form-control">
+    </div>
+</div>
+```
+When validation error occured, text of an error be shown in the bottom of the field. 
+The field itself will have a red border.
+
+* Required array fields:
+    *    **name** - html field name attribute
+    *    **label** - label text
+    *    **value** - value of html element
+    *    **items** - only for **icp::forms.horizontal.select-group**. Array/object of items for \<select> options
+
+* Additional array fields:
+    *    **attr** - array, any html attribute applied to html field
+    *    **col1_class** - first column class (default: col-sm-2)
+    *    **col1_class** - second column class (default: col-sm-10)
+    *    **prepend** - the same as **items** only for **select-group**, but these elements stay in front of other options
+
+* Example of form group usage.
+
+    * Create \<input> element
+        ```bash
+        @include('icp::forms.horizontal.text-group', ['name' => 'title', 'label' => 'Title', 'value' => old('title', $article->title)])
+        ```
+
+    * Create \<select> element
+        ```bash
+        @include('icp::forms.horizontal.select-group', [
+            'name' => 'category_id',
+            'label' => 'Category',
+            'value' => old('category_id', $article->category_id),
+            'items' => $categories->pluck('title', 'id'),
+            'prepend' => [0 => ' - ']
+        ])
+        ```
+
+    * Create \<input type="checkbox"> element
+        ```bash
+        @include('icp::forms.horizontal.checkbox-group', ['name' => 'active', 'value' => old('active', $article->active), 'label' => 'Active'])
+        ```
+    * Create \<textarea> element
+        ```bash
+        @include('icp::forms.horizontal.textarea-group', ['name' => 'description', 'label' => 'Meta description', 'value' => old('description', $article->description)])
+        ```
+        
