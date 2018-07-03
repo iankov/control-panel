@@ -8,7 +8,14 @@
 
     <div class="box">
         <div class="box-header">
-            <button type="button" onclick="document.location.href='{{icp_route('setting.create')}}'" class="btn btn-default">Add new</button>
+            <div class="input-group-btn">
+                <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">Add new <span class="fa fa-caret-down"></span></button>
+                <ul class="dropdown-menu">
+                    @foreach(\Iankov\ControlPanel\Models\Setting::getTypes() as $key => $type)
+                    <li><a href="{{icp_route('setting.create', ['type' => $key])}}">{{$type}}</a></li>
+                    @endforeach
+                </ul>
+            </div>
             <button id="delete-button" type="submit" class="btn btn-danger pull-right" disabled>Delete</button>
         </div>
 

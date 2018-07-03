@@ -50,15 +50,13 @@ class SettingController extends Controller
     {
         return view('icp::setting.edit', [
             'setting' => Setting::find($id),
-            'types' => Setting::getTypes()
         ]);
     }
 
-    public function create()
+    public function create($type)
     {
         return view('icp::setting.create', [
-            'setting' => new Setting(),
-            'types' => Setting::getTypes()
+            'setting' => new Setting(['type' => $type])
         ]);
     }
 
