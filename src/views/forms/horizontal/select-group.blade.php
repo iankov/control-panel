@@ -6,7 +6,7 @@
 <div class="form-group {{$errors->has($name) ? 'has-error' : ''}}">
     <label class="{{$col1_class or 'col-sm-2'}} control-label">{{$label}}</label>
     <div class="{{$col2_class or 'col-sm-10'}}">
-        <select {!! html_attributes($attr ?? []) !!} name="{{$name}}">
+        <select {!! html_attributes($attr ?? []) !!} name="{{html_field_name($name)}}">
 
             @if(isset($prepend))
                 @foreach($prepend as $key => $item)

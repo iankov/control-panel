@@ -60,3 +60,24 @@ if(! function_exists('html_attributes')){
         return implode(' ', $attributes);
     }
 }
+
+/**
+ * Laravel array dotted key style to html field name
+ * Example: html_field_name('users.personal.first_name') returns users[personal][first_name]
+ *
+ * @param string
+ * @return string
+ */
+if(!function_exists('html_field_name')){
+    function html_field_name($name)
+    {
+        $segments = explode('.', $name);
+        $first = array_shift($segments);
+
+        $segments = array_map(function($item){
+            return '['.$item.']';
+        }, $segments);
+
+        return $first.implode('', $segments);
+    }
+}

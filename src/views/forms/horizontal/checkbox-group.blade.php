@@ -8,7 +8,7 @@
     <label class="{{$col1_class or 'col-sm-2'}} control-label">{{$label}}</label>
     <div class="{{$col2_class or 'col-sm-10'}}">
         <div class="checkbox">
-            <input name="{{$name}}" {!! html_attributes($attr ?? []) !!} {{$value ? 'checked' : ''}} />
+            <input name="{{html_field_name($name)}}" {!! html_attributes($attr ?? []) !!} {{$value ? 'checked' : ''}} />
             @if($errors->has($name))
                 <span class="help-block">{{$errors->first($name)}}</span>
             @endif
