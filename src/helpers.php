@@ -20,7 +20,7 @@ function icp_route($name, $parameters = [], $absolute = true)
  * @return array or string
  */
 if (! function_exists('setting')) {
-    function setting($pattern = null)
+    function setting($pattern = null, $default = '')
     {
         static $settings;
         if(!isset($settings)){
@@ -39,7 +39,7 @@ if (! function_exists('setting')) {
 
         $result = $settings->where('key', $pattern)->first();
 
-        return $result ? $result->parsed_value : '';
+        return $result ? $result->parsed_value : $default;
     }
 }
 
