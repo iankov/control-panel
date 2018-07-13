@@ -40,17 +40,32 @@
     ```bash
     php artisan vendor:publish --tag=icp_public
     ```
+    
+* Publish migrations
+    ```bash
+    php artisan vendor:publish --tag=icp_migrations
+    ```
+        
+* Publish seeds
+    ```bash
+    php artisan vendor:publish --tag=icp_seeds
+    ```
 
 * Run migrations
 
     ```bash
-    php artisan migrate --path=vendor/iankov/control-panel/database/migrations
+    php artisan migrate
     ```
 
+* Run dump autoload
+    ```bash
+    composer dump-autoload
+    ```
+    
 * Run seeder to insert initial admin user. Login: admin@admin.com, Password: admin
 
     ```bash
-    php artisan db:seed --class=Iankov\\ControlPanel\\Database\\Seeds\\Admins
+    php artisan db:seed --class=Admins
     ```
 
 ## Elfinder file manager integration

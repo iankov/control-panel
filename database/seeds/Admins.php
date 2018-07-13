@@ -1,9 +1,6 @@
 <?php
 
-namespace Iankov\ControlPanel\Database\Seeds;
-
 use Illuminate\Database\Seeder;
-use DB;
 
 class Admins extends Seeder
 {
