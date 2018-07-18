@@ -33,9 +33,9 @@ class ServiceProvider extends BaseProvider
             __DIR__.'/../database/seeds/' => database_path('seeds')
         ], 'icp_seeds');
 
-        /*$this->publishes([
-            __DIR__.'/views' => base_path('resources/views/vendor/iankov/control-panel'),
-        ], 'icp_views');*/
+        $this->publishes([
+            __DIR__.'/views' => resource_path('views/vendor/icp'),
+        ], 'icp_views');
 
         $router->middlewareGroup('icp', [
             \App\Http\Middleware\EncryptCookies::class,

@@ -133,8 +133,73 @@
 
  * Create 'images' folder in your public dir to match `roots.images` config path
 
-## Horizontal form groups
+# Developing a new module
+### Basic concept
+Basic concept of building a module is to make a separate route file for the module. You can place it in a standard ```routes/``` folder.
+I.e. if you make a module to create and delete news, it could be ```routes/control/news.php``` file with the following content:
+    
+```php
+Route::group(['prefix' => 'news', 'as' => 'news.'], function(){
+    Route::get('create', ['as' => 'create', 'uses' => 'NewsController@create']);
+    Route::delete('{id}', ['as' => 'delete', 'uses' => 'NewsController@delete']);
+});
+```
+    
+### Registering a module
+When you make a new module, you need to add it to ```config/icp.php file```. 
+Minimum requirement is to add route path to the ```module``` array like this:
+```php
+'news' => [
+    'route' => [
+        'path' => base_path('routes/control/news.php'), //required
+        'namespace' => '\App\Http\Controllers\Control', //optional
+    ]
+],
+```
+Optional parameter ```namespace``` defines a namespace for our controller. In our case ```NewsController``` is most likely located in ```/app/Http/Controllers/Control/NewsController.php```
 
+### Adding menu item
+After you register a module, you'll be able to use routes in ```config/icp-menu.php``` like this:
+```php
+[
+    'icon' => 'list', //menu icon <i class="fa fa-list"></i>
+    'title' => 'News', //menu title text
+    'link' => icp_route('news') //<a href="icp_route('news')"
+],
+```
+This will add a new menu item into master template menu of your control panel. 
+If you don't register your module you'll get an error ```route not found``` when using ```icp_route()``` or ```route()``` function in ```config/icp-menu.php```.
+<br>However you can always use a regular string to define a ```link```. It could be relative path like ```/control/news/list``` or a full url like ```http://you-site.com/news/1/edit```.
+
+**```icp_route()```** function is the same as standard laravel ```route()``` except that it adds the prefix ```config('icp.route.prefix-name')``` on the beginning of the given route.
+<br>I.e. ```config('icp.route.prefix-name') = 'control.'```(by default)
+then ```icp_route('news.view')``` is equal to ```route('control.news.view)```
+
+### Views
+Most likely you'd want to use a master template of ```iankov/control-panel``` for you admin panel pages.
+This can easily be done by extending your blade template.
+<br><br>Sections available:
+* ```title``` - obviously it's a title
+* ```content``` - it can be any html, javascript, css, etc... to be inserted in the main part of master template 
+```
+@extends('icp::master')
+
+@section('title', 'Creating a new page...')
+
+@section('content')
+    main html body
+@endsection
+```
+
+### Changing stardard iankov/control-panel views
+For this purpose just publish all views to ```resources/views``` directory.
+```bash
+php artisan vendor:publish --tag=icp_views
+```
+
+Now you have a set of files available for making changes in ```resources/views/vendor/icp```.
+
+### Horizontal form groups
 * Create horizontal group elements like this
 ```html
 <div class="form-group ">
