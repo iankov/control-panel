@@ -40,13 +40,23 @@ class ServiceProvider extends BaseProvider
         $router->middlewareGroup('icp', [
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
 
             \Iankov\ControlPanel\Middlewares\AdminAuth::class,
+        ]);
+
+        $router->middlewareGroup('icp-guest', [
+            \App\Http\Middleware\EncryptCookies::class,
+            \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
+            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
+            \Illuminate\Session\Middleware\StartSession::class,
+            \Illuminate\View\Middleware\ShareErrorsFromSession::class,
+            \App\Http\Middleware\VerifyCsrfToken::class,
+            \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ]);
 
         $defaultRoute = config('icp.route');

@@ -1,6 +1,16 @@
 <?php
 
 return [
+    /*
+     * This config replaces the default config/session.php
+     * when middleware \Iankov\ControlPanel\Middlewares\BeforeStartSession::class is used or 'icp', 'icp-guest' middleware groups
+     *
+     * WARNING: be sure to use this middleware for all control panel routes or none.
+     * Otherwise you can get a session conflicts which results to infinite redirects during authentication
+     */
+    'session' => [
+        'cookie' => 'icp'
+    ],
     //default route parameters
     'route' => [
         'middleware' => 'icp', //check if have access to control panel (if authorized)
@@ -29,7 +39,7 @@ return [
             'route' => [
                 'path' => base_path('vendor/iankov/control-panel/src/routes/auth.php'),
                 'namespace' => '\Iankov\ControlPanel\Controllers\Auth',
-                'middleware' => 'web',
+                'middleware' => 'icp-guest',
                 'prefix-url' => '/control/auth',
                 'prefix-name' => 'control.auth.'
             ],
