@@ -38,9 +38,11 @@ class ServiceProvider extends BaseProvider
         ], 'icp_views');
 
         $router->middlewareGroup('icp', [
+            //used before session and before cookies, because cookies uses session config as well
+            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
+
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
@@ -50,9 +52,11 @@ class ServiceProvider extends BaseProvider
         ]);
 
         $router->middlewareGroup('icp-guest', [
+            //used before session and before cookies, because cookies uses session config as well
+            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
+
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
-            \Iankov\ControlPanel\Middlewares\BeforeStartSession::class,
             \Illuminate\Session\Middleware\StartSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,

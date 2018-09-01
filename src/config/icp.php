@@ -9,7 +9,11 @@ return [
      * Otherwise you can get a session conflicts which results to infinite redirects during authentication
      */
     'session' => [
-        'cookie' => 'icp'
+        //cookie name
+        //'cookie' => 'icp'
+
+        //cookie path, should always be the same as route.prefix-url
+        //'path' => '/control'
     ],
     //default route parameters
     'route' => [
